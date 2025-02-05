@@ -1,44 +1,45 @@
+using System.Text.Json;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var app = builder.Build();
+var svgSettingsPath = Path.Combine(Environment.CurrentDirectory, "svgsettings.json");
+builder.Configuration.AddJsonFile(svgSettingsPath);
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+var app = builder.Build();
 
 app.UseHttpsRedirection();
 
-var summaries = new[]
+app.MapGet("/svg", () =>
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+    var svgSettings = new
+    {
+        Height = app.Configuration["SvgSettings:Height"],
+        Width = app.Configuration["SvgSettings:Width"]
+    };
 
-app.MapGet("/weatherforecast", () =>
+    return Results.Ok(svgSettings);
+});
+
+app.MapPut("/svg/{height}/{width}", async (int height, int width) =>
 {
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast")
-.WithOpenApi();
+    Thread.Sleep(10000);
+
+    if (width > height)
+    {
+        return Results.ValidationProblem(
+            new Dictionary<string, string[]>() { { "Messages", ["Invalid parameters"] } },
+            "Width is greater than Height");
+    }
+
+    var svgSettings = new { Height = height, Width = width };
+
+    using var fileStream = File.OpenWrite(svgSettingsPath);
+    await fileStream.WriteAsync(JsonSerializer.SerializeToUtf8Bytes(svgSettings));
+
+    return Results.Ok(svgSettings);
+});
 
 app.Run();
-
-internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
