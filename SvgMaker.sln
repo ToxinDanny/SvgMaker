@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SvgMaker.Api", "SvgMaker.Api\SvgMaker.Api.csproj", "{B44E77D2-9DDD-4369-9037-6795888E2B72}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SvgMaker.WebApp.Server", "SvgMaker.WebApp\SvgMaker.WebApp.Server\SvgMaker.WebApp.Server.csproj", "{B1E6B220-47BA-4368-A1AF-A1A3FF581316}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "svgmaker.webapp.client", "SvgMaker.WebApp\svgmaker.webapp.client\svgmaker.webapp.client.esproj", "{AD055992-9C30-42AC-A1DE-8808E4C50DC6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +13,16 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B44E77D2-9DDD-4369-9037-6795888E2B72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B44E77D2-9DDD-4369-9037-6795888E2B72}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B44E77D2-9DDD-4369-9037-6795888E2B72}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B44E77D2-9DDD-4369-9037-6795888E2B72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1E6B220-47BA-4368-A1AF-A1A3FF581316}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1E6B220-47BA-4368-A1AF-A1A3FF581316}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1E6B220-47BA-4368-A1AF-A1A3FF581316}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1E6B220-47BA-4368-A1AF-A1A3FF581316}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD055992-9C30-42AC-A1DE-8808E4C50DC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD055992-9C30-42AC-A1DE-8808E4C50DC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD055992-9C30-42AC-A1DE-8808E4C50DC6}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{AD055992-9C30-42AC-A1DE-8808E4C50DC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD055992-9C30-42AC-A1DE-8808E4C50DC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD055992-9C30-42AC-A1DE-8808E4C50DC6}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

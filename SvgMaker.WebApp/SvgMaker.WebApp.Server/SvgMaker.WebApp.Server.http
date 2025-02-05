@@ -1,0 +1,6 @@
+@SvgMaker.WebApp.Server_HostAddress = http://localhost:5226
+
+GET {{SvgMaker.WebApp.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

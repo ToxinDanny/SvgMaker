@@ -2,9 +2,6 @@ using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
 var svgSettingsPath = Path.Combine(Environment.CurrentDirectory, "svgsettings.json");
 builder.Configuration.AddJsonFile(svgSettingsPath);
 
@@ -45,5 +42,7 @@ app.MapPut("/svg/{height}/{width}", async (int height, int width) =>
 
     return Results.Ok(svgSettings);
 });
+
+app.MapFallbackToFile("/index.html");
 
 app.Run();
