@@ -15,8 +15,8 @@ app.MapGet("/svg", () =>
 {
     var svgSettings = new
     {
-        Height = app.Configuration["SvgSettings:Height"],
-        Width = app.Configuration["SvgSettings:Width"]
+        Height = app.Configuration["Height"],
+        Width = app.Configuration["Width"]
     };
 
     return Results.Ok(svgSettings);
